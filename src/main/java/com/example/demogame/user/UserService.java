@@ -51,6 +51,7 @@ public class UserService implements UserDetailsService {
     @Transactional
     public User addUser(User userToInsert) {
         try {
+
             userToInsert.setPassword(passwordEncoder.encode(userToInsert.getPassword()));
             User addedUser = userRepository.save(userToInsert);
             addedUser.getUser_id();

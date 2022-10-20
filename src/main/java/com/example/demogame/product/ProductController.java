@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+
 @RestController
 @RequestMapping("product")
 public class ProductController {
@@ -18,6 +22,12 @@ public class ProductController {
     @GetMapping("/getAll")
     public ResponseEntity getAllProducts(){
         return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping("/getCartProductsByCart")
+    public  ResponseEntity getCartProductsByCart(HttpServletRequest request, HttpServletResponse response, @RequestHeader Object authorization){
+        String email = request.getAttribute("username").toString();
+         return ResponseEntity.ok(productService.getCartProductsByUser(email));
     }
 
     @PostMapping("/insert")

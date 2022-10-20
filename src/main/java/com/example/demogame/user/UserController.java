@@ -17,6 +17,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
+    @CrossOrigin
     @PostMapping("/insert")
     public User addUser(@RequestBody User userForInsert){
         return userService.addUser(userForInsert);
